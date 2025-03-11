@@ -20,15 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-#ifdef LAYER_LED_ENABLE
-#include "layer_led.c"
-#endif
-
-enum my_keyball_keycodes {
-    LAY_TOG = KEYBALL_SAFE_RANGE,
-};
-
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
@@ -68,24 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
     keyball_set_scroll_mode(get_highest_layer(state) == 3);
-    change_layer_led_color(state);
     return state;
 }
 
-// 切り替え処理
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        #ifdef LAYER_LED_ENABLE
-        case LAY_TOG: toggle_layer_led(record->event.pressed); return true;
-        #endif
-        default: break;
-    }
-    return true;
-}
-
-
 #ifdef OLED_ENABLE
-
 #    include "lib/oledkit/oledkit.h"
 
 void oledkit_render_info_user(void) {
@@ -96,7 +73,6 @@ void oledkit_render_info_user(void) {
 #endif
 
 #ifdef COMBO_ENABLE
-
 
 // コンボとなるキーの配列[
 const uint16_t PROGMEM combo_esc[] = {KC_J, KC_K, COMBO_END};
