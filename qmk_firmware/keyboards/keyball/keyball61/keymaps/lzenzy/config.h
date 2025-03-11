@@ -40,3 +40,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #define COMBO_ONLY_FROM_LAYER 0
 #define LAYER_LED_ENABLE
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
