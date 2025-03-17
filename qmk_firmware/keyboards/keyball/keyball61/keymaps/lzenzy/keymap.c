@@ -36,4 +36,3 @@ combo_t key_combos[] = {
   COMBO(combo_bs, KC_BSPC),
   COMBO(jd_combo, QK_CAPS_WORD_TOGGLE)
 };
-#endif
